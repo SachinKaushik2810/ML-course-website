@@ -1,0 +1,12 @@
+{
+  "name": "full-stack-data-science-ml-engineering-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static course site for Full-Stack Data Science & ML Engineering",
+  "scripts": {
+    "start": "serve -s . -l 4173"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

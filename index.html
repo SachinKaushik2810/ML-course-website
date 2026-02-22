@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full-Stack Data Science & ML Engineering | Sachin Kaushik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <span class="brand__dot"></span>
+        <span class="brand__name">Full-Stack DS + ML Eng</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#outcomes" class="nav__link">Outcomes</a>
+        <a href="#tracks" class="nav__link">Tracks</a>
+        <a href="#projects" class="nav__link">Capstones</a>
+        <a href="#format" class="nav__link">Format</a>
+        <a href="#tooling" class="nav__link">Tooling</a>
+        <a href="#instructor" class="nav__link">Instructor</a>
+        <a href="#faq" class="nav__link">FAQ</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+      <a class="btn btn--ghost" href="mailto:kaushiksachin132@gmail.com">Email to Enroll</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Full program · Self-paced + weekly live sessions</p>
+          <h1>Full-Stack Data Science & ML Engineering</h1>
+          <p class="lead">Learn to frame problems, ship ML models, and run them in production. Foundations → ML/DL → MLOps with real capstones.</p>
+          <div class="hero__cta">
+            <a class="btn" href="mailto:kaushiksachin132@gmail.com">Email to Enroll</a>
+            <a class="btn btn--ghost" href="resume/Resume_Sachin.pdf" download>Download Resume</a>
+          </div>
+          <div class="hero__meta">
+            <span class="pill">Foundations</span>
+            <span class="pill">ML & DL</span>
+            <span class="pill">MLOps</span>
+            <span class="pill">Capstone</span>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="orb orb--one"></div>
+          <div class="orb orb--two"></div>
+          <div class="card">
+            <p class="card__label">Inside the course</p>
+            <ul class="card__list">
+              <li>Frame business problems & scope data</li>
+              <li>Train, evaluate, and iterate quickly</li>
+              <li>Deploy, observe, and improve services</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="outcomes">
+      <div class="container">
+        <div class="section__header">
+          <h2>Program outcomes</h2>
+          <p>Practical capability across the lifecycle: data → model → product → production.</p>
+        </div>
+        <div class="pill-grid">
+          <article class="pill-card">
+            <h3>Problem framing & EDA</h3>
+            <p>Ask the right questions, scope data, clean, visualize, and quantify uncertainty.</p>
+          </article>
+          <article class="pill-card">
+            <h3>Modeling & DL</h3>
+            <p>Classical ML through deep learning and GenAI with strong evaluation habits.</p>
+          </article>
+          <article class="pill-card">
+            <h3>Production & MLOps</h3>
+            <p>Pipelines, CI/CD, serving, monitoring, and reliability practices that ship.</p>
+          </article>
+          <article class="pill-card">
+            <h3>Portfolio & hiring readiness</h3>
+            <p>Capstone repos, dashboards, and stories crafted for interviews and promotions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="tracks">
+      <div class="container curriculum">
+        <div class="section__header">
+          <h2>Program tracks</h2>
+          <p>Three tracks that build from fundamentals to production readiness.</p>
+        </div>
+        <div class="curriculum__modules">
+          <div class="module">
+            <h3>Foundations</h3>
+            <p class="tagline">Approx. 4 weeks</p>
+            <ul>
+              <li>Python for data: Pandas, NumPy, data cleaning</li>
+              <li>Exploratory analysis & visualization</li>
+              <li>Statistics & experimentation basics</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Modeling</h3>
+            <p class="tagline">Approx. 6 weeks</p>
+            <ul>
+              <li>Classical ML: regression, trees/ensembles, SVM</li>
+              <li>Deep learning: CNNs, RNNs/LSTMs, transformers</li>
+              <li>NLP/GenAI, evaluation, and model diagnostics</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>ML Engineering</h3>
+            <p class="tagline">Approx. 4 weeks</p>
+            <ul>
+              <li>Pipelines, feature stores, and experiment tracking</li>
+              <li>CI/CD for models, containerization, APIs</li>
+              <li>Monitoring, drift detection, cost & performance tuning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__header">
+          <h2>Capstone projects</h2>
+          <p>Each capstone ships an MVP, monitoring hooks, and a reflective write-up.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="badge">Analytics</div>
+            <h3>Product analytics deep dive</h3>
+            <p>Event pipelines, feature creation, and uplift modeling for product decisions.</p>
+            <p class="tools">Tools: Python, Pandas, scikit-learn, dbt concepts</p>
+          </article>
+          <article class="project-card">
+            <div class="badge">Forecasting</div>
+            <h3>Time series demand forecasting</h3>
+            <p>Classical + DL hybrids for demand/flow prediction with backtesting and drift alerts.</p>
+            <p class="tools">Tools: Python, statsmodels, LightGBM, MLflow</p>
+          </article>
+          <article class="project-card">
+            <div class="badge">Document AI</div>
+            <h3>Document intelligence</h3>
+            <p>RAG-powered extractor/checker loop with vector search and human-in-the-loop QA.</p>
+            <p class="tools">Tools: Python/Node, Docker, Postgres/pgvector, RAG</p>
+          </article>
+          <article class="project-card">
+            <div class="badge">Recommenders</div>
+            <h3>Personalized recommendations</h3>
+            <p>Baseline collaborative filtering to neural recommenders with A/B style evaluation.</p>
+            <p class="tools">Tools: Python, PyTorch, implicit/recsys libs</p>
+          </article>
+          <article class="project-card">
+            <div class="badge">MLOps</div>
+            <h3>Serving & monitoring</h3>
+            <p>Containerize models, expose REST/gRPC, add tracing/metrics, run load tests with budgets.</p>
+            <p class="tools">Tools: FastAPI, Docker, Prometheus/Grafana</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="format">
+      <div class="container ml-track">
+        <div>
+          <h2>Program format</h2>
+          <p>Designed for working professionals: self-paced core + weekly live labs and office hours.</p>
+          <ul class="list">
+            <li><strong>Cadence:</strong> 14-week pathway; lifetime access to recordings.</li>
+            <li><strong>Support:</strong> Weekly office hours, code reviews, and capstone feedback.</li>
+            <li><strong>Prereqs:</strong> Basic Python and comfort with command line; math refreshed inside.</li>
+          </ul>
+        </div>
+        <div class="ml-track__callout">
+          <p class="eyebrow">Hands-on by design</p>
+          <h3>Build, ship, and iterate</h3>
+          <p>Every module pairs lessons with a lab, then layers production constraints so you learn how to ship.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tooling">
+      <div class="container ml-track">
+        <div>
+          <h2>Tooling stack</h2>
+          <p>Modern tools across data, modeling, and production.</p>
+          <ul class="list">
+            <li><strong>Data:</strong> Python, Pandas, dbt concepts</li>
+            <li><strong>Modeling:</strong> scikit-learn, PyTorch/TensorFlow, LightGBM, transformers</li>
+            <li><strong>Production:</strong> Docker, FastAPI/Node, Postgres/pgvector, MLflow, SageMaker/Azure</li>
+            <li><strong>Observability:</strong> Prometheus/Grafana, drift checks, logging/tracing patterns</li>
+          </ul>
+        </div>
+        <div class="ml-track__callout">
+          <p class="eyebrow">ML Engineering spotlight</p>
+          <h3>Deploy and monitor</h3>
+          <p>Ship containerized APIs, add metrics/traces, and practice on-call simulations for ML services.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="instructor">
+      <div class="container instructor">
+        <div>
+          <h2>Your instructor</h2>
+          <p class="lead">Sachin Kaushik — Ph.D. in theoretical physics; data scientist specializing in ML for finance and genomics.</p>
+          <ul class="list">
+            <li>Data Scientist, Broadridge (Oct 2024–present): gross flow forecasting; agentic document AI with 90% automation accuracy.</li>
+            <li>Postdoc, UNC Chapel Hill (2023–2024): cancer mutation impact modeling with SVMs and neural nets.</li>
+            <li>Postdoc, Cornell University (2022–2023): efficient C simulations for evolutionary genetics on HPC.</li>
+            <li>Ph.D., JNCASR (2017–2023): mathematical biology & population genetics; published in Genetics/OUP.</li>
+          </ul>
+          <div class="socials">
+            <a class="link" href="https://www.linkedin.com/in/sachin-kaushik-79816b111" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="link" href="mailto:kaushiksachin132@gmail.com">Email</a>
+          </div>
+        </div>
+        <div class="timeline" aria-label="Career timeline">
+          <div class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <p class="eyebrow">2024–Now</p>
+              <p>Broadridge · Data Scientist</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <p class="eyebrow">2023–2024</p>
+              <p>UNC Chapel Hill · Postdoc Research Scientist</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <p class="eyebrow">2022–2023</p>
+              <p>Cornell University · Postdoc Research Scientist</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__dot"></span>
+            <div>
+              <p class="eyebrow">2017–2023</p>
+              <p>Ph.D. · JNCASR, Mathematical Biology</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section__header">
+          <h2>Learning experience & guarantee</h2>
+          <p>Student quotes placeholder; commitment to weekly support and iterative feedback.</p>
+        </div>
+        <div class="guarantee">
+          <p>Weekly office hours + async feedback on assignments. If you attend sessions and submit work but feel stuck, get a 1:1 corrective plan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq">
+        <div class="section__header">
+          <h2>FAQ</h2>
+          <p>Quick answers about the full-stack DS/ML Eng program.</p>
+        </div>
+        <div class="accordion" role="tablist">
+          <button class="accordion__item" aria-expanded="false">
+            <span>What background do I need?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Basic Python and comfort with the command line. We reinforce stats/ML concepts inside the course.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>How is the course delivered?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Self-paced videos plus weekly live labs for Q&A, code reviews, and capstone checkpoints.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>Which tools will we use?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Python, Pandas, scikit-learn, PyTorch/TensorFlow, Docker, FastAPI/Node, Postgres/pgvector, MLflow, SageMaker/Azure.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>Do we cover deployment?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Yes—containerizing models, serving APIs, adding monitoring, and running incident simulations are core to the engineering track.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>Is there a certificate?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">You receive a completion certificate plus curated capstone artifacts and interview-ready stories.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>How are capstones reviewed?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Submit repos and write-ups for asynchronous review; live sessions cover feedback and next steps.</div>
+          </button>
+          <button class="accordion__item" aria-expanded="false">
+            <span>Do you help with careers?</span>
+            <span class="accordion__icon">+</span>
+            <div class="accordion__panel">Yes—portfolio polishing, project storytelling, and mock technical interviews are included.</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contact">
+      <div class="container contact">
+        <div>
+          <h2>Ready to enroll?</h2>
+          <p>Tell me your goals and current stack; we'll tailor your project path.</p>
+        </div>
+        <div class="contact__actions">
+          <a class="btn" href="mailto:kaushiksachin132@gmail.com">Email Sachin</a>
+          <a class="btn btn--ghost" href="#hero">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="brand__name">Full-Stack Data Science & ML Engineering</p>
+        <p>© <span id="year"></span> Sachin Kaushik</p>
+      </div>
+      <div class="footer__links">
+        <a href="#outcomes">Outcomes</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#projects">Projects</a>
+        <a href="mailto:kaushiksachin132@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
