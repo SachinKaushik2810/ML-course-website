@@ -1,873 +1,954 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Science & Machine Learning — A Complete Roadmap</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --accent: #e8c547;
-    --accent2: #4fc3f7;
-    --text: #e8e8f0;
-    --muted: #6b6b8a;
-    --glow: rgba(232, 197, 71, 0.15);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* Grid noise background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(232,197,71,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,197,71,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 8vw 4rem;
-    overflow: hidden;
-  }
-
-  .hero-blob {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,197,71,0.08) 0%, transparent 70%);
-    top: -150px;
-    right: -200px;
-    pointer-events: none;
-    animation: pulse 6s ease-in-out infinite;
-  }
-
-  .hero-blob2 {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(79,195,247,0.06) 0%, transparent 70%);
-    bottom: 50px;
-    left: -100px;
-    pointer-events: none;
-    animation: pulse 8s ease-in-out infinite reverse;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.7; }
-  }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(232,197,71,0.3);
-    padding: 6px 14px;
-    border-radius: 2px;
-    margin-bottom: 2rem;
-    width: fit-content;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tag::before {
-    content: '▶';
-    font-size: 0.6rem;
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 900;
-    line-height: 1.05;
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-top: 1.5rem;
-    max-width: 560px;
-    line-height: 1.7;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
-    position: relative;
-    z-index: 1;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-top: 4px;
-    text-transform: uppercase;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 8vw;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 1;
-  }
-
-  .scroll-hint::after {
-    content: '';
-    width: 40px;
-    height: 1px;
-    background: var(--muted);
-  }
-
-  /* ── INSTRUCTOR ── */
-  .instructor-bar {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 2rem 8vw;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    position: relative;
-    z-index: 1;
-    flex-wrap: wrap;
-  }
-
-  .inst-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #000;
-    flex-shrink: 0;
-  }
-
-  .inst-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
-
-  .inst-info p {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .inst-creds {
-    margin-left: auto;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .cred-pill {
-    background: rgba(232,197,71,0.08);
-    border: 1px solid rgba(232,197,71,0.2);
-    padding: 4px 12px;
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-  }
-
-  /* ── SECTION ── */
-  section {
-    padding: 5rem 8vw;
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    line-height: 1.2;
-    max-width: 700px;
-  }
-
-  /* ── ROADMAP ── */
-  .roadmap {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .phase {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0 2rem;
-    position: relative;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .phase:nth-child(1) { animation-delay: 0.1s; }
-  .phase:nth-child(2) { animation-delay: 0.2s; }
-  .phase:nth-child(3) { animation-delay: 0.3s; }
-  .phase:nth-child(4) { animation-delay: 0.4s; }
-  .phase:nth-child(5) { animation-delay: 0.5s; }
-  .phase:nth-child(6) { animation-delay: 0.6s; }
-  .phase:nth-child(7) { animation-delay: 0.7s; }
-  .phase:nth-child(8) { animation-delay: 0.8s; }
-
-  .phase-number-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 4px;
-  }
-
-  .phase-num {
-    width: 48px;
-    height: 48px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--accent);
-    background: var(--bg);
-    flex-shrink: 0;
-    z-index: 1;
-    position: relative;
-    transition: background 0.3s, color 0.3s;
-  }
-
-  .phase:hover .phase-num {
-    background: var(--accent);
-    color: #000;
-  }
-
-  .phase-line {
-    width: 2px;
-    flex: 1;
-    background: linear-gradient(to bottom, var(--accent), var(--border));
-    margin: 4px 0;
-    min-height: 40px;
-  }
-
-  .phase:last-child .phase-line {
-    display: none;
-  }
-
-  .phase-content {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 1.5rem 2rem;
-    margin-bottom: 24px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    cursor: default;
-  }
-
-  .phase:hover .phase-content {
-    border-color: var(--accent);
-    box-shadow: 0 0 30px var(--glow);
-  }
-
-  .phase-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .phase-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-  }
-
-  .phase-duration {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--accent2);
-    border: 1px solid rgba(79,195,247,0.2);
-    padding: 3px 10px;
-    border-radius: 2px;
-    white-space: nowrap;
-  }
-
-  .phase-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-top: 0.5rem;
-    line-height: 1.6;
-  }
-
-  .phase-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 1rem;
-  }
-
-  .topic-chip {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    padding: 3px 10px;
-    border-radius: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.68rem;
-    color: #a0a0c0;
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .phase:hover .topic-chip {
-    border-color: rgba(232,197,71,0.2);
-    color: var(--text);
-  }
-
-  /* ── WHAT YOU GET ── */
-  .benefits {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5px;
-    margin-top: 3rem;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .benefit-card {
-    background: var(--surface);
-    padding: 2rem;
-    transition: background 0.3s;
-  }
-
-  .benefit-card:hover {
-    background: #16161f;
-  }
-
-  .benefit-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .benefit-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .benefit-text {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* ── CTA ── */
-  .cta-section {
-    text-align: center;
-    padding: 6rem 8vw;
-  }
-
-  .cta-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section h2 em {
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  .cta-section p {
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--accent);
-    color: #000;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 14px 36px;
-    border-radius: 2px;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-    margin: 0 0.5rem;
-  }
-
-  .btn-primary:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
-  }
-
-  .btn-outline {
-    display: inline-block;
-    background: transparent;
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 14px 36px;
-    border-radius: 2px;
-    cursor: pointer;
-    border: 1px solid var(--accent);
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-    margin: 0 0.5rem;
-  }
-
-  .btn-outline:hover {
-    opacity: 0.7;
-    transform: translateY(-2px);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 8vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  footer p {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  @media (max-width: 600px) {
-    .roadmap { }
-    .phase { grid-template-columns: 56px 1fr; gap: 0 1rem; }
-    .phase-content { padding: 1rem 1.2rem; }
-    .inst-creds { margin-left: 0; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Data Science & AI Program — Dr. Sachin Kaushik</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080811;
+      --surface:#10101a;
+      --surface2:#0d0d16;
+      --border:#1d1d2f;
+      --text:#f2f2fb;
+      --muted:#9a9ab4;
+      --accent:#e8c547;   /* gold */
+      --accent2:#5bd2ff;  /* cyan */
+      --glow:rgba(232,197,71,.18);
+      --glow2:rgba(91,210,255,.14);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:radial-gradient(1200px 800px at 20% 10%, rgba(91,210,255,.06), transparent 55%),
+                 radial-gradient(900px 700px at 85% 20%, rgba(232,197,71,.08), transparent 60%),
+                 var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* subtle grid */
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size:64px 64px;
+      opacity:.16;
+      mask-image:radial-gradient(closest-side at 40% 30%, black 0%, transparent 68%);
+      z-index:0;
+    }
+
+    /* floating blobs */
+    .blob{
+      position:absolute;
+      border-radius:999px;
+      filter:blur(22px);
+      opacity:.9;
+      mix-blend-mode:screen;
+      z-index:0;
+      animation:float 10s ease-in-out infinite;
+    }
+    .blob.b1{
+      width:520px;height:520px;
+      right:-220px;top:-220px;
+      background:radial-gradient(circle, rgba(232,197,71,.22), transparent 62%);
+      animation-duration:12s;
+    }
+    .blob.b2{
+      width:420px;height:420px;
+      left:-180px;bottom:-180px;
+      background:radial-gradient(circle, rgba(91,210,255,.18), transparent 62%);
+      animation-duration:14s;
+      animation-direction:reverse;
+    }
+    .blob.b3{
+      width:280px;height:280px;
+      left:55%;top:45%;
+      background:radial-gradient(circle, rgba(232,197,71,.10), transparent 65%);
+      animation-duration:16s;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(0,-18px,0) scale(1.05)}
+    }
+
+    /* layout */
+    .container{
+      width:min(1120px, 92vw);
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    /* top nav */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background:rgba(8,8,17,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--text);
+    }
+    .logo{
+      width:34px;height:34px;
+      border-radius:10px;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 1px rgba(255,255,255,.06), 0 18px 40px rgba(232,197,71,.12);
+    }
+    .brand b{
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .nav-links a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:.92rem;
+      transition:color .2s ease;
+    }
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    /* buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:600;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.10);
+      transition:transform .18s ease, opacity .18s ease, background .18s ease, border-color .18s ease;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(232,197,71,1), rgba(91,210,255,.85));
+      color:#05050b;
+      border-color:rgba(255,255,255,.12);
+      box-shadow:0 18px 50px rgba(232,197,71,.20);
+    }
+    .btn.ghost{
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+    .btn.small{padding:10px 12px;border-radius:10px;font-size:.9rem}
+
+    /* hero */
+    .hero{
+      padding:74px 0 38px;
+      position:relative;
+      overflow:hidden;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.78rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--accent);
+      border:1px solid rgba(232,197,71,.32);
+      background:rgba(232,197,71,.06);
+      padding:8px 14px;
+      border-radius:999px;
+    }
+    .tag:before{content:"▶";font-size:.72rem}
+
+    h1{
+      margin-top:18px;
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      letter-spacing:-.4px;
+      font-size:clamp(2.6rem, 5.5vw, 4.4rem);
+      line-height:1.06;
+      max-width:980px;
+    }
+    h1 em{color:var(--accent);font-style:italic}
+    .sub{
+      margin-top:16px;
+      max-width:720px;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:26px;
+      margin-top:34px;
+      align-items:stretch;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-left{
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:radial-gradient(800px 400px at 20% 20%, rgba(91,210,255,.12), transparent 60%),
+                 radial-gradient(700px 420px at 90% 10%, rgba(232,197,71,.14), transparent 60%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .hero-left > *{position:relative;z-index:1}
+
+    .stats{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:18px;
+    }
+    .stat{
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.12);
+      min-width:170px;
+      flex:1;
+    }
+    .stat .n{
+      font-family:"Playfair Display", serif;
+      font-weight:800;
+      font-size:1.6rem;
+      color:var(--accent);
+      line-height:1.1;
+    }
+    .stat .l{
+      margin-top:4px;
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.72rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:rgba(154,154,180,.9);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      margin-top:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .hint{
+      margin-top:14px;
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.75rem;
+      letter-spacing:.12em;
+      color:rgba(154,154,180,.9);
+      display:flex;align-items:center;gap:10px;
+    }
+    .hint:after{
+      content:"";
+      height:1px;width:56px;background:rgba(154,154,180,.45);
+    }
+
+    .hero-right{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .mini{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:16px;
+      background:rgba(0,0,0,.10);
+    }
+    .mini h3{
+      font-family:"Playfair Display", serif;
+      font-size:1.1rem;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+    .mini p{margin:0;color:var(--muted);font-size:.95rem}
+    .chips{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;
+    }
+    .chip{
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.72rem;
+      color:rgba(240,240,251,.88);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* section headers */
+    .section{
+      padding:64px 0;
+    }
+    .kicker{
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.78rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+    .title{
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      font-size:clamp(1.9rem, 3.3vw, 2.7rem);
+      line-height:1.15;
+      max-width:860px;
+    }
+    .lead{
+      margin-top:12px;
+      color:var(--muted);
+      max-width:820px;
+      font-size:1.02rem;
+    }
+
+    /* timeline */
+    .timeline{
+      margin-top:28px;
+      display:grid;
+      gap:14px;
+    }
+    .phase{
+      display:grid;
+      grid-template-columns: 54px 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .dotcol{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-top:10px;
+    }
+    .dot{
+      width:40px;height:40px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      border:2px solid rgba(232,197,71,.9);
+      color:rgba(232,197,71,.95);
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.9rem;
+      background:rgba(0,0,0,.18);
+      transition: all .25s ease;
+    }
+    .vline{
+      width:2px;
+      flex:1;
+      margin:8px 0 0;
+      background:linear-gradient(to bottom, rgba(232,197,71,.75), rgba(255,255,255,.06));
+    }
+    .phase:last-child .vline{display:none}
+
+    .phasecard{
+      padding:18px 18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 0 0 1px rgba(0,0,0,.10) inset;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .phasecard:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:radial-gradient(700px 260px at 10% 0%, rgba(91,210,255,.10), transparent 58%),
+                 radial-gradient(700px 260px at 85% 0%, rgba(232,197,71,.12), transparent 60%);
+      opacity:.0;
+      transition: opacity .22s ease;
+      pointer-events:none;
+    }
+    .phasecard:hover{
+      transform: translateY(-3px);
+      border-color: rgba(232,197,71,.35);
+      box-shadow: 0 18px 60px rgba(0,0,0,.40), 0 0 40px var(--glow);
+    }
+    .phasecard:hover:before{opacity:.9}
+    .phasecard > *{position:relative;z-index:1}
+
+    .phasehead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .phasetitle{
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      font-size:1.2rem;
+      line-height:1.2;
+    }
+    .duration{
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(91,210,255,.95);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(91,210,255,.20);
+      background:rgba(91,210,255,.06);
+    }
+    .phasedesc{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .topics{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .topic{
+      font-family:"IBM Plex Mono", monospace;
+      font-size:.72rem;
+      color:rgba(240,240,251,.88);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      transition: border-color .18s ease, color .18s ease;
+    }
+    .phasecard:hover .topic{
+      border-color: rgba(232,197,71,.22);
+      color: var(--text);
+    }
+    .phasecard:hover .dot{
+      background:rgba(232,197,71,.95);
+      color:#07070e;
+    }
+
+    /* outcomes */
+    .grid{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:14px;
+    }
+    .feature{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .feature:hover{
+      transform: translateY(-3px);
+      border-color: rgba(91,210,255,.25);
+      box-shadow: 0 18px 60px rgba(0,0,0,.38), 0 0 42px var(--glow2);
+    }
+    .feature .icon{font-size:1.35rem;margin-bottom:10px}
+    .feature h4{
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      font-size:1rem;
+      margin-bottom:6px;
+    }
+    .feature p{margin:0;color:var(--muted);font-size:.94rem}
+
+    /* CTA */
+    .cta{
+      padding:70px 0;
+      text-align:center;
+    }
+    .cta .box{
+      padding:34px 22px;
+      border-radius:calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.10);
+      background:radial-gradient(1200px 480px at 50% 0%, rgba(232,197,71,.14), transparent 62%),
+                 radial-gradient(900px 520px at 10% 20%, rgba(91,210,255,.10), transparent 62%),
+                 linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .cta h2{
+      font-family:"Playfair Display", serif;
+      font-weight:900;
+      font-size:clamp(1.9rem, 3.8vw, 3rem);
+      line-height:1.1;
+      margin-bottom:10px;
+    }
+    .cta h2 em{color:var(--accent);font-style:italic}
+    .cta p{
+      max-width:820px;
+      margin:0 auto 18px;
+      color:var(--muted);
+      font-size:1.02rem;
+    }
+    .cta .row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    /* footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:26px 0;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .foot{
+      display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+    }
+    .foot a{color:var(--accent);text-decoration:none}
+    .mono{font-family:"IBM Plex Mono", monospace;font-size:.8rem;letter-spacing:.08em}
+
+    /* reveal on scroll */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* responsive */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr;gap:14px}
+      .grid{grid-template-columns:1fr}
+      .stats .stat{min-width:unset}
+    }
+    @media (max-width: 520px){
+      .nav-links{display:none}
+      h1{font-size:2.55rem}
+      section{padding:56px 0}
+      .phase{grid-template-columns:46px 1fr}
+      .dot{width:36px;height:36px}
+      .container{width:min(1120px, 92vw)}
+    }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .blob{animation:none}
+      .reveal{transition:none}
+      .btn, .phasecard, .feature{transition:none}
+    }
+  </style>
 </head>
+
 <body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-blob"></div>
-  <div class="hero-blob2"></div>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo"></span>
+        <b>Dr. Sachin Kaushik</b>
+      </a>
 
-  <div class="tag">Complete Learning Path</div>
+      <div class="nav-links">
+        <a href="#roadmap">Roadmap</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#instructor">Instructor</a>
+        <a href="#apply">Apply</a>
+      </div>
 
-  <h1>Master <em>Data Science</em><br>& Machine Learning</h1>
-
-  <p class="hero-sub">
-    A structured, practitioner-built roadmap — from Python basics to production-ready AI systems — taught by a PhD scientist with 7+ years of real-world ML experience.
-  </p>
-
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">8</span>
-      <span class="stat-label">Learning Phases</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">7+</span>
-      <span class="stat-label">Years Industry Exp.</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100%</span>
-      <span class="stat-label">Project-Based</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">∞</span>
-      <span class="stat-label">Lifetime Access</span>
+      <div class="nav-cta">
+        <a class="btn ghost small" href="#roadmap">View Roadmap</a>
+        <a class="btn primary small" href="#apply">Apply Now</a>
+      </div>
     </div>
   </div>
 
-  <p class="scroll-hint">SCROLL TO EXPLORE</p>
-</section>
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="container">
+      <div class="tag reveal">Industry-ready • Project-based • Interview-focused</div>
+      <h1 class="reveal" style="transition-delay:.05s">
+        Master <em>Data Science</em> <br/> & Agentic Generative AI
+      </h1>
+      <p class="sub reveal" style="transition-delay:.1s">
+        A structured, end-to-end program designed to take you from foundations to production-ready AI systems —
+        including RAG and a small LangGraph-based agentic framework.
+      </p>
 
-<!-- INSTRUCTOR BAR -->
-<div class="instructor-bar">
-  <div class="inst-avatar">SK</div>
-  <div class="inst-info">
-    <h3>Sachin Kaushik</h3>
-    <p>Senior Data Scientist · PhD, Mathematical Biology · Published Researcher</p>
-  </div>
-  <div class="inst-creds">
-    <span class="cred-pill">Ph.D JNCASR</span>
-    <span class="cred-pill">IIT Delhi</span>
-    <span class="cred-pill">Broadridge Financial</span>
-    <span class="cred-pill">Cornell University</span>
-    <span class="cred-pill">UNC Chapel Hill</span>
-  </div>
-</div>
+      <div class="hero-grid">
+        <div class="card hero-left reveal" style="transition-delay:.14s">
+          <div class="stats">
+            <div class="stat">
+              <div class="n">16–20</div>
+              <div class="l">Weeks Program</div>
+            </div>
+            <div class="stat">
+              <div class="n">4+</div>
+              <div class="l">Capstone Builds</div>
+            </div>
+            <div class="stat">
+              <div class="n">100%</div>
+              <div class="l">Hands-on</div>
+            </div>
+          </div>
 
-<!-- ROADMAP -->
-<section>
-  <p class="section-label">// 01 — The Roadmap</p>
-  <h2 class="section-title">A step-by-step path from beginner to job-ready data scientist</h2>
+          <div class="hero-actions">
+            <a class="btn primary" href="#apply">Apply Now</a>
+            <a class="btn ghost" href="#roadmap">Explore Curriculum</a>
+          </div>
 
-  <div class="roadmap">
-
-    <!-- PHASE 1 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">01</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Python & Programming Foundations</span>
-          <span class="phase-duration">3–4 WEEKS</span>
+          <div class="hint">SCROLL TO EXPLORE</div>
         </div>
-        <p class="phase-desc">Build a rock-solid programming base. No prior coding experience needed. We go from "Hello World" to writing reusable, clean functions that power real data pipelines.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Python syntax & data types</span>
-          <span class="topic-chip">Lists, dicts, loops</span>
-          <span class="topic-chip">Functions & OOP basics</span>
-          <span class="topic-chip">File I/O</span>
-          <span class="topic-chip">NumPy & Pandas</span>
-          <span class="topic-chip">Bash & Linux CLI</span>
-          <span class="topic-chip">Jupyter Notebooks</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- PHASE 2 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">02</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Mathematics for Machine Learning</span>
-          <span class="phase-duration">4–5 WEEKS</span>
-        </div>
-        <p class="phase-desc">You don't need to be a mathematician, but you do need intuition. We build the essential math toolkit — the same foundations I used in my PhD and applied daily in industry.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Linear Algebra</span>
-          <span class="topic-chip">Matrix operations</span>
-          <span class="topic-chip">Calculus & gradients</span>
-          <span class="topic-chip">Probability theory</span>
-          <span class="topic-chip">Statistics & distributions</span>
-          <span class="topic-chip">Hypothesis testing</span>
-          <span class="topic-chip">Bayes' theorem</span>
+        <div class="card hero-right reveal" style="transition-delay:.18s">
+          <div class="mini">
+            <h3>What you’ll build</h3>
+            <p>ML project • Deployment-ready API • Deep Learning project • RAG + LangGraph agent system</p>
+            <div class="chips">
+              <span class="chip">ML</span>
+              <span class="chip">Deployment</span>
+              <span class="chip">Deep Learning</span>
+              <span class="chip">RAG</span>
+              <span class="chip">LangGraph Agents</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Outcome</h3>
+            <p>Job-ready portfolio + interview prep focused on fundamentals, trade-offs, and production thinking.</p>
+            <div class="chips">
+              <span class="chip">Project Storytelling</span>
+              <span class="chip">Mock Interviews</span>
+              <span class="chip">Resume Positioning</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- PHASE 3 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">03</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Data Analysis & Visualisation</span>
-          <span class="phase-duration">3 WEEKS</span>
+  <!-- ROADMAP -->
+  <section id="roadmap" class="section">
+    <div class="container">
+      <div class="kicker reveal">// 01 — Roadmap</div>
+      <div class="title reveal" style="transition-delay:.05s">A step-by-step path from foundations to production-ready AI systems</div>
+      <p class="lead reveal" style="transition-delay:.1s">
+        This roadmap is designed to build deep fundamentals first, then move into real projects, deployment, deep learning,
+        and finally modern GenAI systems with agentic workflows.
+      </p>
+
+      <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">01</div>
+            <div class="vline"></div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">Foundations</div>
+              <div class="duration">Weeks 1–4</div>
+            </div>
+            <p class="phasedesc">Python for DS, core math intuition, and the building blocks required to understand models deeply.</p>
+            <div class="topics">
+              <span class="topic">Python (NumPy/Pandas)</span>
+              <span class="topic">Matplotlib</span>
+              <span class="topic">Linear Algebra</span>
+              <span class="topic">Probability</span>
+              <span class="topic">Statistics</span>
+              <span class="topic">Bias–Variance</span>
+            </div>
+          </div>
         </div>
-        <p class="phase-desc">Data rarely arrives clean. Learn to explore, clean, and tell stories with data — the skill that separates good analysts from great data scientists.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Exploratory Data Analysis</span>
-          <span class="topic-chip">Feature Engineering</span>
-          <span class="topic-chip">Handling missing data</span>
-          <span class="topic-chip">Matplotlib & Seaborn</span>
-          <span class="topic-chip">Correlation & causation</span>
-          <span class="topic-chip">SQL for data analysis</span>
-          <span class="topic-chip">t-SNE & PCA for EDA</span>
+
+        <!-- Phase 2 -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">02</div>
+            <div class="vline"></div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">Core Machine Learning</div>
+              <div class="duration">Weeks 5–9</div>
+            </div>
+            <p class="phasedesc">The algorithms and evaluation skills needed for DS/ML interviews and real projects.</p>
+            <div class="topics">
+              <span class="topic">Linear/Logistic Regression</span>
+              <span class="topic">Ridge & Lasso</span>
+              <span class="topic">Trees & Random Forest</span>
+              <span class="topic">XGBoost/LightGBM</span>
+              <span class="topic">PCA & Clustering</span>
+              <span class="topic">Cross-Validation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">03</div>
+            <div class="vline"></div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">ML Systems & Deployment</div>
+              <div class="duration">Weeks 10–12</div>
+            </div>
+            <p class="phasedesc">Go beyond notebooks: build APIs, containerize, and think like a production ML engineer.</p>
+            <div class="topics">
+              <span class="topic">Feature Engineering (prod)</span>
+              <span class="topic">MLflow basics</span>
+              <span class="topic">FastAPI</span>
+              <span class="topic">Docker</span>
+              <span class="topic">Cloud deployment concepts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">04</div>
+            <div class="vline"></div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">Deep Learning</div>
+              <div class="duration">Weeks 13–15</div>
+            </div>
+            <p class="phasedesc">Build intuition from first principles and implement modern DL workflows.</p>
+            <div class="topics">
+              <span class="topic">NNs & Backprop</span>
+              <span class="topic">CNN basics</span>
+              <span class="topic">RNN/LSTM basics</span>
+              <span class="topic">Training loops</span>
+              <span class="topic">Regularization</span>
+              <span class="topic">Transformers overview</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">05</div>
+            <div class="vline"></div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">Generative AI & Agentic Systems</div>
+              <div class="duration">Weeks 16–20</div>
+            </div>
+            <p class="phasedesc">Build RAG pipelines and a small LangGraph-based agentic framework with tool-use and simple orchestration.</p>
+            <div class="topics">
+              <span class="topic">LLMs & prompting</span>
+              <span class="topic">Embeddings</span>
+              <span class="topic">Vector DB (concepts)</span>
+              <span class="topic">RAG pipelines</span>
+              <span class="topic">LangGraph agents</span>
+              <span class="topic">Tool-calling & workflows</span>
+              <span class="topic">Human-in-the-loop</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final -->
+        <div class="phase reveal">
+          <div class="dotcol">
+            <div class="dot">06</div>
+          </div>
+          <div class="phasecard">
+            <div class="phasehead">
+              <div class="phasetitle">Capstone + Interview Preparation</div>
+              <div class="duration">Parallel + Final Weeks</div>
+            </div>
+            <p class="phasedesc">Portfolio polish + interview practice: explain trade-offs, metrics, and production decisions clearly.</p>
+            <div class="topics">
+              <span class="topic">ML project</span>
+              <span class="topic">Deployment project</span>
+              <span class="topic">Deep Learning project</span>
+              <span class="topic">GenAI agent project</span>
+              <span class="topic">Resume positioning</span>
+              <span class="topic">Mock interviews</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section id="outcomes" class="section">
+    <div class="container">
+      <div class="kicker reveal">// 02 — Outcomes</div>
+      <div class="title reveal" style="transition-delay:.05s">What you’ll be able to do after this program</div>
+      <p class="lead reveal" style="transition-delay:.1s">
+        Clear, job-ready capabilities: fundamentals + production thinking + GenAI workflows.
+      </p>
+
+      <div class="grid">
+        <div class="feature reveal">
+          <div class="icon">🧠</div>
+          <h4>Explain ML clearly</h4>
+          <p>Bias–variance, regularization, CV, metrics, and trade-offs — with mathematical intuition.</p>
+        </div>
+        <div class="feature reveal" style="transition-delay:.05s">
+          <div class="icon">🧰</div>
+          <h4>Build end-to-end ML projects</h4>
+          <p>From data prep to evaluation and insights — with clean, reusable code.</p>
+        </div>
+        <div class="feature reveal" style="transition-delay:.1s">
+          <div class="icon">🚀</div>
+          <h4>Deploy models</h4>
+          <p>API + Docker + deployment concepts to ship ML beyond notebooks.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="icon">🤖</div>
+          <h4>Build RAG systems</h4>
+          <p>Chunking, retrieval, basic evaluation, and practical engineering patterns.</p>
+        </div>
+        <div class="feature reveal" style="transition-delay:.05s">
+          <div class="icon">🧩</div>
+          <h4>Agentic workflows</h4>
+          <p>Small LangGraph-based agent system: tools, routing, and multi-step workflows.</p>
+        </div>
+        <div class="feature reveal" style="transition-delay:.1s">
+          <div class="icon">💼</div>
+          <h4>Interview readiness</h4>
+          <p>Project stories, problem framing, and mock interview practice focused on real hiring patterns.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- PHASE 4 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">04</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Classical Machine Learning</span>
-          <span class="phase-duration">5–6 WEEKS</span>
-        </div>
-        <p class="phase-desc">The workhorse algorithms every data scientist must master. We go deep on both supervised and unsupervised methods — understanding not just how to run them, but why they work.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Linear & Logistic Regression</span>
-          <span class="topic-chip">Decision Trees</span>
-          <span class="topic-chip">Random Forest</span>
-          <span class="topic-chip">SVM</span>
-          <span class="topic-chip">LDA</span>
-          <span class="topic-chip">k-Means Clustering</span>
-          <span class="topic-chip">PCA</span>
-          <span class="topic-chip">Ridge & Lasso</span>
-          <span class="topic-chip">Model evaluation & cross-validation</span>
-          <span class="topic-chip">Scikit-learn</span>
-        </div>
-      </div>
-    </div>
+  <!-- INSTRUCTOR -->
+  <section id="instructor" class="section">
+    <div class="container">
+      <div class="kicker reveal">// 03 — Instructor</div>
+      <div class="title reveal" style="transition-delay:.05s">Learn from a practitioner with strong research foundations</div>
+      <p class="lead reveal" style="transition-delay:.1s">
+        The program blends deep conceptual clarity with production-style engineering.
+      </p>
 
-    <!-- PHASE 5 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">05</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Deep Learning & Neural Networks</span>
-          <span class="phase-duration">5–6 WEEKS</span>
-        </div>
-        <p class="phase-desc">From perceptrons to convolutional networks. Understand backpropagation from first principles, then build real models using TensorFlow and PyTorch.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Feedforward NNs</span>
-          <span class="topic-chip">Backpropagation</span>
-          <span class="topic-chip">CNNs (Image Processing)</span>
-          <span class="topic-chip">RNNs & LSTMs</span>
-          <span class="topic-chip">Batch normalization</span>
-          <span class="topic-chip">Dropout & regularization</span>
-          <span class="topic-chip">TensorFlow & PyTorch</span>
-          <span class="topic-chip">Keras</span>
-          <span class="topic-chip">Hyperparameter tuning</span>
+      <div class="card" style="padding:22px; margin-top:18px;">
+        <div class="grid" style="grid-template-columns: 1.1fr .9fr; gap:14px;">
+          <div class="feature" style="border:none;background:transparent;box-shadow:none;padding:0;">
+            <h4 style="font-size:1.1rem;">Dr. Sachin Kaushik</h4>
+            <p style="margin-top:6px;">
+              PhD with 7+ years in ML/DL and applied AI systems. Builds forecasting and agentic AI workflows in financial services,
+              with research experience at Cornell University and UNC Chapel Hill.
+            </p>
+            <div class="chips" style="margin-top:12px;">
+              <span class="chip">ML & Deep Learning</span>
+              <span class="chip">Deployment</span>
+              <span class="chip">GenAI</span>
+              <span class="chip">Agentic Workflows</span>
+            </div>
+          </div>
+          <div class="feature" style="border:none;background:transparent;box-shadow:none;padding:0;">
+            <div class="mini">
+              <h3>Teaching style</h3>
+              <p>Clear fundamentals → real projects → production mindset → interview readiness.</p>
+            </div>
+            <div class="mini" style="margin-top:12px;">
+              <h3>Focus areas</h3>
+              <p>Math intuition, model trade-offs, debugging mindset, and practical build skills.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- PHASE 6 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">06</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">NLP, Transformers & Generative AI</span>
-          <span class="phase-duration">4–5 WEEKS</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="apply" class="cta">
+    <div class="container">
+      <div class="box reveal">
+        <h2>Become <em>industry-ready</em> in Data Science & AI</h2>
+        <p>
+          A structured roadmap + real builds + interview prep — with a modern GenAI module including RAG and LangGraph-based agentic workflows.
+        </p>
+        <div class="row">
+          <a class="btn primary" href="mailto:kaushiksachin132@gmail.com?subject=Course%20Application%20-%20Advanced%20Data%20Science%20%26%20AI">Apply via Email</a>
+          <a class="btn ghost" href="#roadmap">View Curriculum</a>
         </div>
-        <p class="phase-desc">The most in-demand skill in AI right now. Learn how modern language models work, and build applications using LLMs, RAG, and Agentic AI frameworks — the exact stack I use at Broadridge.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Text preprocessing & tokenization</span>
-          <span class="topic-chip">Word embeddings</span>
-          <span class="topic-chip">Attention mechanism</span>
-          <span class="topic-chip">Transformer architecture</span>
-          <span class="topic-chip">BERT & fine-tuning</span>
-          <span class="topic-chip">LLMs & prompting</span>
-          <span class="topic-chip">RAG systems</span>
-          <span class="topic-chip">Agentic AI</span>
-          <span class="topic-chip">Vector databases (pgvector)</span>
-        </div>
+        <p class="mono" style="margin-top:14px; opacity:.9;">Email: <a href="mailto:kaushiksachin132@gmail.com" style="color:var(--accent);text-decoration:none;">kaushiksachin132@gmail.com</a></p>
       </div>
     </div>
+  </section>
 
-    <!-- PHASE 7 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">07</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">MLOps & Cloud Deployment</span>
-          <span class="phase-duration">3–4 WEEKS</span>
-        </div>
-        <p class="phase-desc">Building a model is only half the job. Learn to deploy, monitor, and scale ML systems in production — skills that make you immediately valuable on any ML team.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">AWS SageMaker</span>
-          <span class="topic-chip">Azure ML</span>
-          <span class="topic-chip">MLflow experiment tracking</span>
-          <span class="topic-chip">Docker & containerization</span>
-          <span class="topic-chip">Model monitoring</span>
-          <span class="topic-chip">CI/CD for ML</span>
-          <span class="topic-chip">APIs with FastAPI</span>
-          <span class="topic-chip">S3 & cloud storage</span>
-        </div>
-      </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot">
+      <div class="mono">© 2025 Dr. Sachin Kaushik</div>
+      <div class="mono">Advanced Data Science & AI Program</div>
     </div>
+  </footer>
 
-    <!-- PHASE 8 -->
-    <div class="phase">
-      <div class="phase-number-col">
-        <div class="phase-num">08</div>
-        <div class="phase-line"></div>
-      </div>
-      <div class="phase-content">
-        <div class="phase-header">
-          <span class="phase-title">Capstone Projects & Career Preparation</span>
-          <span class="phase-duration">4 WEEKS</span>
-        </div>
-        <p class="phase-desc">Apply everything you've learned to build 3 end-to-end portfolio projects — in finance, healthcare, and NLP — plus a complete job-hunt toolkit tailored to the DS/ML market.</p>
-        <div class="phase-topics">
-          <span class="topic-chip">Finance: Forecasting model</span>
-          <span class="topic-chip">Genomics: Classification pipeline</span>
-          <span class="topic-chip">NLP: Document extraction agent</span>
-          <span class="topic-chip">GitHub portfolio</span>
-          <span class="topic-chip">DS interview prep</span>
-          <span class="topic-chip">Resume & LinkedIn</span>
-          <span class="topic-chip">Case study walkthroughs</span>
-        </div>
-      </div>
-    </div>
+  <script>
+    // Scroll reveal
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
 
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="benefits">
-  <p class="section-label">// 02 — What You Get</p>
-  <h2 class="section-title">Everything you need to go from zero to hired</h2>
-
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-icon">🎓</div>
-      <h3 class="benefit-title">PhD-Level Depth, Practitioner Simplicity</h3>
-      <p class="benefit-text">Learn the math and theory that actually matter — taught by someone who has applied these methods in top research institutions and in financial services.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🔬</div>
-      <h3 class="benefit-title">Real-World Projects</h3>
-      <p class="benefit-text">Every module includes hands-on projects drawn from real domains: genomics, finance, and enterprise AI — not toy datasets or synthetic examples.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🧩</div>
-      <h3 class="benefit-title">Code-First Approach</h3>
-      <p class="benefit-text">Every concept is backed by working code you can run, modify, and own. Python notebooks, scripts, and production-ready templates included.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">☁️</div>
-      <h3 class="benefit-title">Cloud & Production Skills</h3>
-      <p class="benefit-text">Go beyond notebooks. Learn to deploy models on AWS SageMaker and Azure — the same platforms used by teams at Broadridge and beyond.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🤖</div>
-      <h3 class="benefit-title">Generative AI & Agents</h3>
-      <p class="benefit-text">Get ahead of the curve with a dedicated module on LLMs, RAG pipelines, and multi-agent systems — one of the hottest skills in the industry right now.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">💼</div>
-      <h3 class="benefit-title">Career-Ready Portfolio</h3>
-      <p class="benefit-text">Finish with 3 polished portfolio projects, a GitHub profile, a DS-optimized resume, and interview prep materials — so you can walk into any job confident.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Ready to start your<br><em>data science journey?</em></h2>
-  <p>Join students learning from a researcher who has published in Oxford journals, built AI at scale, and knows what it takes to get hired.</p>
-  <a href="#" class="btn-primary">Enroll Now</a>
-  <a href="#" class="btn-outline">View Syllabus</a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Sachin Kaushik · Data Science & ML Course</p>
-  <p>
-    <a href="mailto:kaushiksachin132@gmail.com">kaushiksachin132@gmail.com</a>
-  </p>
-</footer>
-
+    els.forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
