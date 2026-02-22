@@ -1,0 +1,2 @@
+# Static site has no Python dependencies.
+# Use `python3 -m http.server 4173` for local preview without installing packages.
