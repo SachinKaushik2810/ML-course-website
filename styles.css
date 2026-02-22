@@ -118,6 +118,12 @@ a { color: inherit; text-decoration: none; }
 .module ul { margin: 0; padding-left: 18px; color: var(--muted); }
 .module li { margin-bottom: 6px; }
 
+.step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; counter-reset: step; }
+.step-card { background: var(--card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; }
+.step-card h3 { margin: 8px 0 8px; font-size: 18px; }
+.step-card p { margin: 0; color: var(--muted); }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-weight: 700; box-shadow: var(--shadow); }
+
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .project-card { background: var(--card); padding: 18px; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden; }
 .badge { position: absolute; top: 14px; right: 14px; background: var(--accent); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
